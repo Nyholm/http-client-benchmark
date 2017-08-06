@@ -3,7 +3,7 @@
 $directory = __DIR__ . DIRECTORY_SEPARATOR . $argv[1];
 
 require_once $directory . '/vendor/autoload.php';
-
+/*
 class MissingStrategies implements \Http\Discovery\Strategy\DiscoveryStrategy {
     public static function getCandidates($type)
     {
@@ -14,6 +14,7 @@ class MissingStrategies implements \Http\Discovery\Strategy\DiscoveryStrategy {
     }
 };
 
+
 \Http\Discovery\HttpClientDiscovery::appendStrategy(MissingStrategies::class);
 
 $client = \Http\Discovery\HttpClientDiscovery::find();
@@ -21,10 +22,16 @@ $pluginClient = new \Http\Client\Common\PluginClient($client, [
     new \Http\Client\Common\Plugin\ContentLengthPlugin(),
     new \Http\Client\Common\Plugin\DecoderPlugin()
 ]);
+*/
 
-$httpClient = new \Http\Client\Common\HttpMethodsClient($pluginClient, \Http\Discovery\MessageFactoryDiscovery::find());
+//$httpClient = new \Http\Client\Common\HttpMethodsClient($pluginClient, \Http\Discovery\MessageFactoryDiscovery::find());
+$httpClient = new \Buzz\Browser();
 
-$duration = 10;
+$client = new \Buzz\Client\Curl();
+$client->setMaxRedirects(0);
+$httpClient->setClient($client);
+
+$duration = 3;
 $start = time();
 $request = 0;
 
