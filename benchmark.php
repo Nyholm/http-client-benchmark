@@ -8,41 +8,28 @@ class MissingStrategies implements \Http\Discovery\Strategy\DiscoveryStrategy {
     public static function getCandidates($type)
     {
         return [
-            ['class' => \Http\Adapter\Zend\Client::class, 'condition' => \Http\Adapter\Zend\Client::class],
-            ['class' => \Http\Adapter\Cake\Client::class, 'condition' => \Http\Adapter\Cake\Client::class]
+            ['class' => \Nyholm\Psr7\Factory\HttplugFactory::class, 'condition' => \Nyholm\Psr7\Factory\HttplugFactory::class],
         ];
     }
 };
 
-\Http\Discovery\HttpClientDiscovery::appendStrategy(MissingStrategies::class);
+\Http\Discovery\MessageFactoryDiscovery::appendStrategy(MissingStrategies::class);
+$messageFactory = \Http\Discovery\MessageFactoryDiscovery::find();
+$streamFactory = \Http\Discovery\StreamFactoryDiscovery::find();
+$uriFactory = \Http\Discovery\UriFactoryDiscovery::find();
 
-$client = \Http\Discovery\HttpClientDiscovery::find();
-$pluginClient = new \Http\Client\Common\PluginClient($client, [
-    new \Http\Client\Common\Plugin\ContentLengthPlugin(),
-    new \Http\Client\Common\Plugin\DecoderPlugin()
-]);
-
-$httpClient = new \Http\Client\Common\HttpMethodsClient($pluginClient, \Http\Discovery\MessageFactoryDiscovery::find());
-
-$duration = 10;
-$start = time();
-$request = 0;
-
-while (true) {
-    $httpClient->get('http://127.0.0.1:8081');
-    $request++;
-
-    if (($request % 100) === 0) {
-        if ((time() - $start) > $duration) {
-            break;
-        }
-    }
+$runs = 30000;
+$start = microtime(true);
+for ($i = 0; $i < $runs; $i++) {
+    $request = $messageFactory->createRequest('POST', 'http://tnyholm.se/foo?bar=2', ['foo'=>'bar', 'bar' => ['biz', 'biz2']], 'content');
+    $response = $messageFactory->createResponse(200, 'OK', ['foo'=>'bar', 'bar' => ['biz', 'biz2']], 'content');
+    $uri = $uriFactory->createUri('http://tnyholm.se/foo?bar=2');
+    $stream = $streamFactory->createStream('content');
 }
+$totalTime = microtime(true) - $start;
 
-$totalTime = time() - $start;
-
-echo "Request counts : " . $request . "\n";
-echo "Average time par request : " . ($totalTime / $request) * 1000 . "ms\n";
-echo "Request per second : " . $request / $totalTime . "\n";
-echo "Total time " . $totalTime . "\n";
+echo "Runs : " . $runs . "\n";
+echo "Average time per run : " . ($totalTime / $runs) * 1000 . "ms\n";
+echo "Runs per second : " . floor($runs / $totalTime) . "\n";
+echo "Total time " . $totalTime . "s\n";
 
