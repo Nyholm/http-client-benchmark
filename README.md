@@ -30,6 +30,13 @@ Runs per second: 5634<br>
 Average time per run: 0.1775 ms<br>
 Total time: 5.3240 s
 
+### Slim
+
+Runs: 30,000<br>
+Runs per second: 4396<br>
+Average time per run: 0.2275 ms<br>
+Total time: 6.8237 s
+
 ### Zend
 
 Runs: 30,000<br>
