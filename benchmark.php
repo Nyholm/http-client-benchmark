@@ -28,8 +28,8 @@ for ($i = 0; $i < $runs; $i++) {
 }
 $totalTime = microtime(true) - $start;
 
-echo "Runs : " . $runs . "\n";
-echo "Average time per run : " . ($totalTime / $runs) * 1000 . "ms\n";
-echo "Runs per second : " . floor($runs / $totalTime) . "\n";
-echo "Total time " . $totalTime . "s\n";
+echo "Runs: " . number_format($runs) . "\n";
+echo "Runs per second: " . floor($runs / $totalTime) . "\n";
+echo "Average time per run: " . number_format(($totalTime / $runs) * 1000, 4) . " ms\n";
+echo "Total time: " . number_format($totalTime, 4) . " s\n";
 

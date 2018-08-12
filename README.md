@@ -18,22 +18,23 @@ php benchmark.php guzzle
 
 ### Nyholm
 
-Runs : 30 000<br>
-Average time per run : 0.15310640335083ms<br>
-Runs per second : 6 531<br>
-Total time 4.5931921005249s
+Runs: 30,000<br>
+Runs per second: 6360<br>
+Average time per run: 0.1572 ms<br>
+Total time: 4.7168 s
 
 ### Guzzle
 
-Runs : 30 000<br>
-Average time per run : 0.181640736262ms<br>
-Runs per second : 5 505<br>
-Total time 5.4492220878601s
+Runs: 30,000<br>
+Runs per second: 5634<br>
+Average time per run: 0.1775 ms<br>
+Total time: 5.3240 s
 
 ### Zend
 
-Runs : 30 000<br>
-Average time per run : 0.26502836545308ms<br>
-Runs per second : 3 773<br>
-Total time 7.9508509635925s
+Runs: 30,000<br>
+Runs per second: 3771<br>
+Average time per run: 0.2652 ms<br>
+Total time: 7.9553 s
+
 
