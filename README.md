@@ -15,33 +15,38 @@ php benchmark.php guzzle
 ```
 
 ## Result
-
+> **Notice:** Your results can be different (or at least mines was), depending on the PHP version, OS version and CPU.
+> 
+> The results have been produced on the following config:
+> - **CPU:** AMD Ryzen 1600X (3.8Ghz OC)
+> - **OS:** Ubuntu 20.04
+> - **PHP version:** PHP 7.4.9 (cli) (built: Oct 26 2020 15:17:14) 
 ### Nyholm
 
 Runs: 30,000<br>
-Runs per second: 11214<br>
-Average time per run: 0.0892 ms<br>
-Total time: 2.6751 s
+Runs per second: 56324<br>
+Average time per run: 0.0178 ms<br>
+Total time: 0.5326 s
 
 ### Guzzle
 
 Runs: 30,000<br>
-Runs per second: 8614<br>
-Average time per run: 0.1161 ms<br>
-Total time: 3.4824 s
+Runs per second: 50528<br>
+Average time per run: 0.0198 ms<br>
+Total time: 0.5937 s
 
 ### Slim
 
 Runs: 30,000<br>
-Runs per second: 7424<br>
-Average time per run: 0.1347 ms<br>
-Total time: 4.0409 s
+Runs per second: 49657<br>
+Average time per run: 0.0201 ms<br>
+Total time: 0.6041 s
 
-### Zend Diactoros 2
+### Laminas Diactoros
 
 Runs: 30,000<br>
-Runs per second: 6422<br>
-Average time per run: 0.1557 ms<br>
-Total time: 4.6709 s
+Runs per second: 34996<br>
+Average time per run: 0.0286 ms<br>
+Total time: 0.8572 s
 
 
